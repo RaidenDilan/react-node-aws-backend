@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "keywords": [],
   "author": "Raiden Dilan <raiden18@me.com> (https://www.raidendilan.co.uk)",
@@ -13,7 +14,6 @@
     "aws-sdk": "^2.716.0",
     "babel-eslint": "^10.1.0",
     "body-parser": "^1.19.0",
-    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "eslint": "^7.5.0",
