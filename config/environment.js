@@ -1,3 +1,4 @@
+require('dotenv').config();
 const port = process.env.PORT || 8000;
 const clientURL = process.env.CLIENT_URL || 'http://localhost:3000';
 const env = process.env.NODE_ENV || 'development';
