@@ -6,13 +6,6 @@ const AWS = require('aws-sdk');
 const Category = require('../models/category');
 const Link = require('../models/link');
 
-console.log(
-  process.env.AWS_ACCESS_KEY_ID,
-  process.env.AWS_SECRET_KEY_ID,
-  process.env.AWS_REGION,
-  process.env.S3_BUCKET_NAME
-);
-
 // s3
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -22,7 +15,7 @@ const s3 = new AWS.S3({
 
 exports.create = (req, res) => {
   const { name, image, content } = req.body;
-  console.table({ name, image, content });
+  // console.table({ name, image, content });
   // image data
   const base64Data = new Buffer.from(image.replace(/^data:image\/\w+;base64,/, ''), 'base64');
   const type = image.split(';')[0].split('/')[1];
