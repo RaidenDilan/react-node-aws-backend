@@ -6,16 +6,23 @@ const AWS = require('aws-sdk');
 const Category = require('../models/category');
 const Link = require('../models/link');
 
+console.log(
+  process.env.AWS_ACCESS_KEY_ID,
+  process.env.AWS_SECRET_KEY_ID,
+  process.env.AWS_REGION,
+  process.env.S3_BUCKET_NAME
+);
+
 // s3
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY_ID,
   region: process.env.AWS_REGION
 });
 
 exports.create = (req, res) => {
   const { name, image, content } = req.body;
-  // console.table({ name, image, content });
+  console.table({ name, image, content });
   // image data
   const base64Data = new Buffer.from(image.replace(/^data:image\/\w+;base64,/, ''), 'base64');
   const type = image.split(';')[0].split('/')[1];
@@ -34,7 +41,7 @@ exports.create = (req, res) => {
   
   s3.upload(params, (err, data) => {
     if (err) {
-      console.log(err);
+      console.log('S3 Error ->', err);
       res.status(400).json({ error: 'Upload to s3 failed' });
     }
     console.log('AWS UPLOAD RES DATA', data);
